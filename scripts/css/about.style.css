@@ -1,0 +1,116 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  .hero-gradient {
+    background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  }
+
+  .feature-icon {
+    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3);
+  }
+
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+  }
+
+  .accordion-active .accordion-content {
+    max-height: 500px;
+  }
+
+  .accordion-toggle {
+    position: relative;
+  }
+
+  .accordion-toggle::after {
+    content: '\f078';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease;
+  }
+
+  .accordion-active .accordion-toggle::after {
+    transform: translateY(-50%) rotate(180deg);
+  }
+
+  .feedback-form input:focus,
+  .feedback-form textarea:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.4);
+  }
+
+  .creator-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+  }
+
+  .creator-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, rgba(59, 130, 246, 0.2) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(59, 130, 246, 0.2) 100%);
+    transform: rotate(45deg);
+    z-index: 0;
+    animation: shine 6s infinite linear;
+  }
+
+  @keyframes shine {
+    0% {
+      transform: translateX(-100%) rotate(45deg);
+    }
+
+    100% {
+      transform: translateX(100%) rotate(45deg);
+    }
+  }
+
+  .wave-divider {
+    width: 100%;
+    height: 80px;
+    overflow: hidden;
+    line-height: 0;
+  }
+
+  .wave-divider svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 80px;
+  }

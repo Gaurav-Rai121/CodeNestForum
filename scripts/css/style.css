@@ -1,0 +1,97 @@
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    transition: background-color 0.3s ease;
+}
+
+/* Light mode styles */
+/* .light-mode {
+    background-color: #f3f4f6;
+    color: #000;
+}
+
+/* Dark mode styles */
+.dark-mode {
+    background-color: #1f2937;
+    /* color: #f9fafb; */
+} */
+
+.content-wrapper {
+    transition: margin-left 0.3s ease;
+    flex-grow: 1; /* Allows the content to grow */
+}
+
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto; /* Center content */
+    padding: 0 1rem; /* Space on both sides */
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    #verticalNav {
+        width: 16rem; /* Adjust width for smaller screens */
+    }
+
+    .content-wrapper {
+        margin-left: 0;
+    }
+}
+
+.nav-link:hover {
+    background-color: #3b82f6;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transform: translateX(10px);
+}
+
+.footer-link:hover {
+    color: #3b82f6;
+    text-decoration: underline;
+}
+
+.logos-slide img {
+    animation: bounce 3s infinite;
+}
+
+@keyframes bounce {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-30px);
+    }
+
+    60% {
+        transform: translateY(-15px);
+    }
+}
+
+/* Light Mode Styles */
+/* .light-mode {
+    background-color: #ffffff; /* Light background 
+    color: black; /* Light text color 
+} */
+
+/* Dark Mode Styles */
+/* .dark-mode {
+    background-color: #1a1a1a; /* Dark background 
+    color: white; Dark text color 
+} */
+
+/* Optional: Specific styles for paragraphs or other elements */
+/* .light-mode p {
+    color: black; /* Light mode text color 
+} */
+
+/* .dark-mode p {
+    color: white; /* Dark mode text color 
+} */
+
+/* css for home page */

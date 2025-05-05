@@ -1,0 +1,120 @@
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #3B82F6;
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #2563EB;
+    }
+
+    /* Smooth scroll */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* Animation classes */
+    .fade-in {
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Gradient background for sections */
+    .gradient-section {
+        background: linear-gradient(135deg, #EFF6FF 0%, #F9FAFB 100%);
+    }
+
+    /* Active tab highlight */
+    .policy-tab.active {
+        background-color: #3B82F6;
+        color: white;
+    }
+
+    .animate-fade-in-up {
+        animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .animate-pulse-slow {
+        animation: pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    .animate-blob {
+        animation: blob 7s infinite;
+    }
+
+    .animation-delay-300 {
+        animation-delay: 0.3s;
+    }
+
+    .animation-delay-600 {
+        animation-delay: 0.6s;
+    }
+
+    .animation-delay-2000 {
+        animation-delay: 2s;
+    }
+
+    .animation-delay-4000 {
+        animation-delay: 4s;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes blob {
+        0% {
+            transform: translate(0px, 0px) scale(1);
+        }
+
+        33% {
+            transform: translate(30px, -50px) scale(1.1);
+        }
+
+        66% {
+            transform: translate(-20px, 20px) scale(0.9);
+        }
+
+        100% {
+            transform: translate(0px, 0px) scale(1);
+        }
+    }
+
+    @keyframes pulse {
+
+        0%,
+        100% {
+            opacity: 0.1;
+        }
+
+        50% {
+            opacity: 0.3;
+        }
+    }

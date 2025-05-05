@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
+.doc-section {
+    transition: transform 0.3s ease;
+}
+
+.doc-section:hover {
+    transform: translateY(-2px);
+}
+
+.toc-link.active {
+    color: #0284c7;
+    font-weight: 600;
+    border-left-color: #0284c7;
+}
+
+.code-block {
+    background-color: #1e293b;
+    color: #e2e8f0;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-family: 'Fira Code', monospace;
+    overflow-x: auto;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #94a3b8;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+}

@@ -1,0 +1,2 @@
+Navbar: #27272A - A dark charcoal gray with subtle warmth
+Main Content: #FAFAFA - Clean white with #3F3F46 text

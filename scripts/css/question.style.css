@@ -1,0 +1,209 @@
+:root {
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --secondary: #10b981;
+    --accent: #8b5cf6;
+    --dark: #0f172a;
+    --light: #f8fafc;
+    --gray-light: #f1f5f9;
+    --gray-medium: #94a3b8;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--light);
+    color: var(--dark);
+    line-height: 1.7;
+}
+
+.question-card {
+    transition: box-shadow 0.3s ease;
+}
+
+.question-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.modal.active {
+    display: flex;
+}
+
+
+
+.form-container {
+    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: #f9fafb;
+    /* Softer white background */
+    border-radius: 0.5rem;
+    /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+}
+
+
+.input-field {
+    border-radius: 0.375rem;
+    border: 1px solid #d1d5db;
+    transition: border-color 0.2s, background-color 0.2s;
+    background-color: #ffffff;
+    /* White background for input fields */
+}
+
+.input-field:focus {
+    border-color: #4f46e5;
+    /* Change border color on focus */
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.5);
+    /* Match button color */
+}
+
+.section-padding {
+    padding: 7rem 0;
+}
+.nav-link {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--primary);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
+}
+.btn-secondary:hover {
+    background-color: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
+}
+.scroll-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+    z-index: 9999;
+    width: 0%;
+    transition: width 0.2s ease;
+}
+
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 400px;
+    height: 100vh;
+    background: white;
+    z-index: 100;
+    transition: right 0.3s ease;
+    padding: 24px;
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-menu.active {
+    right: 0;
+}
+
+.glass-morphism {
+   
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 99;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .animate-float {
+        animation: none;
+    }
+}
+
+/* Ensure code blocks have proper padding and margins */
+code,
+pre {
+    display: block;
+    /* Make it a block element */
+    margin: 0;
+    /* Remove margins */
+    padding: 10px;
+    /* Optional: Add padding for better readability */
+    background-color: #f5f5f5;
+    /* Optional: Set a light background color */
+    border: 1px solid #ddd;
+    /* Optional: Add a border */
+    border-radius: 4px;
+    /* Optional: Slight rounding for the corners */
+    font-family: 'Courier New', Courier, monospace;
+    /* Use monospace font */
+    white-space: pre-wrap;
+    /* Allow line breaks to display properly */
+}
