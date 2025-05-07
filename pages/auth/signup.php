@@ -1,3 +1,13 @@
+
+<?php
+session_start();
+    if (empty($_SESSION['csrf_token'])) {
+        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    }
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,13 +29,254 @@
     }
 
     @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-15px); }
-      100% { transform: translateY(0px); }
+        0% {
+            transform: translateY(0px);
+        }
+
+        50% {
+            transform: translateY(-15px);
+        }
+
+        100% {
+            transform: translateY(0px);
+        }
     }
-    .animate-float { animation: float 6s ease-in-out infinite; }
-    .animate-float-slow { animation: float 8s ease-in-out infinite; }
-    .animate-float-slower { animation: float 10s ease-in-out infinite; }
+
+    .animate-float {
+        animation: float 6s ease-in-out infinite;
+    }
+
+    .animate-float-slow {
+        animation: float 8s ease-in-out infinite;
+    }
+
+    .animate-float-slower {
+        animation: float 10s ease-in-out infinite;
+    }
+
+    .error-card {
+        background-color: #FFFFFF;
+        padding: 24px;
+        border-radius: 14px;
+        border-left: 5px solid #f44336;
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        box-shadow: 0 8px 24px rgba(244, 67, 54, 0.12);
+        animation: slideDown 0.5s ease, pulseAttention 2s ease 0.5s;
+    }
+
+    .error-icon-container {
+        flex-shrink: 0;
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #f44336 0%, #f44336 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 24px;
+        box-shadow: 0 6px 16px rgba(244, 67, 54, 0.2);
+    }
+
+
+    .error-content {
+        flex-grow: 1;
+    }
+
+    .error-content h4 {
+        color: var(--danger-dark);
+        font-size: 17px;
+        margin-bottom: 6px;
+        font-weight: 600;
+    }
+
+    .error-content p {
+        color: var(--text-secondary);
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    :root {
+        --error-primary: #FF3B5C;
+        --error-secondary: #FF768C;
+        --error-bg: #FFF1F3;
+        --text-primary: #2D3748;
+        --text-secondary: #718096;
+        --surface: #FFFFFF;
+        --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.04);
+        --shadow-md: 0 10px 15px rgba(255, 59, 92, 0.08);
+        --shadow-lg: 0 15px 25px rgba(255, 59, 92, 0.12);
+    }
+
+    .error-notification {
+        padding: 8px;
+        max-width: 450px;
+        margin: 0 auto;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    }
+
+    .error-card {
+        background-color: var(--surface);
+        padding: 20px;
+        border-radius: 16px;
+        border-left: 4px solid var(--error-primary);
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        box-shadow: var(--shadow-lg);
+        position: relative;
+        overflow: hidden;
+        animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1), shimmer 3s infinite;
+    }
+
+    .error-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, var(--error-primary), var(--error-secondary));
+        z-index: 1;
+    }
+
+    .error-card::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, 
+            transparent, 
+            rgba(255, 255, 255, 0.08), 
+            transparent
+        );
+        animation: shine 3s infinite;
+    }
+
+    .error-icon-wrapper {
+        position: relative;
+    }
+
+    .error-icon-wrapper::before {
+        content: '';
+        position: absolute;
+        width: 52px;
+        height: 52px;
+        background: rgba(255, 59, 92, 0.08);
+        border-radius: 12px;
+        transform: rotate(45deg);
+        z-index: 0;
+        animation: pulse 2s infinite;
+    }
+
+    .error-icon-container {
+        position: relative;
+        z-index: 1;
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--error-primary) 0%, var(--error-secondary) 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 16px rgba(255, 59, 92, 0.25);
+    }
+
+    .error-content {
+        flex-grow: 1;
+        padding-right: 16px;
+    }
+
+    .error-content h4 {
+        color: var(--text-primary);
+        font-size: 17px;
+        font-weight: 600;
+        margin: 0 0 8px 0;
+        letter-spacing: -0.3px;
+    }
+
+    .error-content p {
+        color: var(--text-secondary);
+        font-size: 15px;
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    .error-actions {
+        align-self: flex-start;
+    }
+
+    .dismiss-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--text-secondary);
+        padding: 4px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+    }
+
+    .dismiss-btn:hover {
+        background-color: rgba(0, 0, 0, 0.04);
+        color: var(--text-primary);
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateY(-20px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes pulse {
+        0% {
+            opacity: 0.6;
+            transform: rotate(45deg) scale(0.9);
+        }
+        50% {
+            opacity: 0.3;
+            transform: rotate(45deg) scale(1.1);
+        }
+        100% {
+            opacity: 0.6;
+            transform: rotate(45deg) scale(0.9);
+        }
+    }
+
+    @keyframes shine {
+        0% {
+            left: -100%;
+        }
+        20% {
+            left: 100%;
+        }
+        100% {
+            left: 100%;
+        }
+    }
+
+    @keyframes shimmer {
+        0% {
+            box-shadow: var(--shadow-lg);
+        }
+        50% {
+            box-shadow: 0 15px 25px rgba(255, 59, 92, 0.18);
+        }
+        100% {
+            box-shadow: var(--shadow-lg);
+        }
+    }
     </style>
 </head>
 
@@ -156,361 +407,185 @@
             </div>
         </div>
 
-            <!-- Right side with signup form -->
-                <div class="w-full lg:w-1/2 p-6 lg:p-12 overflow-y-auto" x-data="{ step: 1, maxStep: 3 }">
-                    <div class="max-w-lg mx-auto">
-                        <!-- Progress bar -->
-                        <div class="mb-8">
-                            <div class="flex justify-between mb-2">
-                                <span class="text-sm font-medium" x-text="`Step ${step} of ${maxStep}`"></span>
-                                <span class="text-sm font-medium"
-                                    x-text="`${Math.round((step/maxStep)*100)}% Complete`"></span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                <div class="gradient-bg h-2.5 rounded-full transition-all duration-300 ease-in-out"
-                                    :style="`width: ${(step/maxStep)*100}%`"></div>
+        <!-- Right side with signup form -->
+        <div class="w-full lg:w-1/2 p-6 lg:p-12 overflow-y-auto" x-data="{ step: 1, maxStep: 3 }">
+            <div class="max-w-lg mx-auto">
+
+            <?php 
+            $error = isset($_GET['error']) ? urldecode($_GET['error']) : '';
+            if($error){
+              echo'               <div class="mr-6 error-notification">
+                    <div class="error-card">
+                        <div class="error-icon-wrapper">
+                            <div class="error-icon-container">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12 8V12M12 16H12.01M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                                        stroke="white" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
                             </div>
                         </div>
-
-                        <form method="post" action='../../Formhandlers/signup/handlesignup.php' id="signupForm" class="space-y-8" enctype="multipart/form-data">
-                            <!-- Step 1: Basic Info -->
-                            <div x-show="step === 1" class="space-y-6">
-                                <h2 class="text-2xl font-bold text-gray-800">Create your account</h2>
-                                <p class="text-gray-600">Join our community and start your coding journey</p>
-
-                                <div class="space-y-4">
-                                    <div>
-                                        <label for="username"
-                                            class="block text-sm font-medium text-gray-700 mb-1">Username</label>
-                                        <div class="relative">
-                                            <div
-                                                class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                                <i class="fas fa-user text-gray-400"></i>
-                                            </div>
-                                            <input type="text" id="username" name="username"
-                                                class="pl-10 block w-full rounded-lg border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 bg-gray-50 py-3 px-4"
-                                                placeholder="Choose a unique username">
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <label for="email"
-                                            class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                                        <div class="relative">
-                                            <div
-                                                class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                                <i class="fas fa-envelope text-gray-400"></i>
-                                            </div>
-                                            <input type="email" id="email" name="email"
-                                                class="pl-10 block w-full rounded-lg border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 bg-gray-50 py-3 px-4"
-                                                placeholder="your@email.com">
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <label for="password"
-                                            class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                                        <div class="relative">
-                                            <div
-                                                class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                                <i class="fas fa-lock text-gray-400"></i>
-                                            </div>
-                                            <input type="password" id="password" name="password"
-                                                class="pl-10 block w-full rounded-lg border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 bg-gray-50 py-3 px-4"
-                                                placeholder="Create a strong password">
-                                        </div>
-                                        <p class="mt-2 text-sm text-gray-500">Must be at least 8 characters with a number
-                                            and special character</p>
-                                    </div>
-
-                                    <div>
-                                        <label for="confirm-password"
-                                            class="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
-                                        <div class="relative">
-                                            <div
-                                                class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                                <i class="fas fa-lock text-gray-400"></i>
-                                            </div>
-                                            <input type="password" id="confirm-password" name="confirm-password"
-                                                class="pl-10 block w-full rounded-lg border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 bg-gray-50 py-3 px-4"
-                                                placeholder="Confirm your password">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Step 2: Personal Details -->
-                            <div x-show="step === 2" class="space-y-6">
-                                <h2 class="text-2xl font-bold text-gray-800">Personal Details</h2>
-                                <p class="text-gray-600">Tell us more about yourself</p>
-
-                                <div class="space-y-4">
-                                    <div>
-                                        <label for="full-name" class="block text-sm font-medium text-gray-700 mb-1">Full
-                                            Name</label>
-                                        <div class="relative">
-                                            <div
-                                                class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                                <i class="fas fa-id-card text-gray-400"></i>
-                                            </div>
-                                            <input type="text" id="full-name" name="full-name"
-                                                class="pl-10 block w-full rounded-lg border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 bg-gray-50 py-3 px-4"
-                                                placeholder="Your full name">
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone
-                                            Number</label>
-                                        <div class="relative">
-                                            <div
-                                                class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                                <i class="fas fa-phone text-gray-400"></i>
-                                            </div>
-                                            <input type="tel" id="phone" name="phone"
-                                                class="pl-10 block w-full rounded-lg border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 bg-gray-50 py-3 px-4"
-                                                placeholder="Your phone number">
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Gender</label>
-                                        <div class="flex space-x-4">
-                                            <div class="flex items-center">
-                                                <input id="male" name="gender" type="radio" value='Male'
-                                                    class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300">
-                                                <label for="male" class="ml-2 block text-sm text-gray-700">Male</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="female" name="gender" type="radio" value="Female"
-                                                    class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300">
-                                                <label for="female" class="ml-2 block text-sm text-gray-700">Female</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="non-binary" name="gender" type="radio" value='Non-binary'
-                                                    class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300">
-                                                <label for="non-binary"
-                                                    class="ml-2 block text-sm text-gray-700">Non-binary</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="other" name="gender" type="radio" value="others"
-                                                    class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300">
-                                                <label for="other" class="ml-2 block text-sm text-gray-700">Other</label>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <label for="profile-image"
-                                            class="block text-sm font-medium text-gray-700 mb-1">Profile Image</label>
-                                        <div
-                                            class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg">
-                                            <div class="space-y-1 text-center">
-                                                <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor"
-                                                    fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                                                    <path
-                                                        d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                                </svg>
-                                                <div class="flex text-sm text-gray-600">
-                                                    <label for="file-upload"
-                                                        class="relative cursor-pointer rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
-                                                        <span>Upload a file</span>
-                                                        <input id="file-upload"      type="file" name='image'
-                                                            class="sr-only">
-                                                    </label>
-                                                    <p class="pl-1">or drag and drop</p>
-                                                </div>
-                                                <p class="text-xs text-gray-500">PNG, JPG, GIF up to 2MB</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Step 3: Coding Interests -->
-                            <div x-show="step === 3" class="space-y-6">
-                                <h2 class="text-2xl font-bold text-gray-800">Coding Interests</h2>
-                                <p class="text-gray-600">Tell us about your programming interests to personalize your
-                                    experience</p>
-
-                                <div class="space-y-4">
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-2">Experience Level</label>
-                                        <select id="experience" name="experience"
-                                            class="mt-1 block w-full pl-3 pr-10 py-3 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-lg bg-gray-50">
-                                            <option value="">Select your level</option>
-                                            <option value="beginner">Beginner (0-1 years)</option>
-                                            <option value="intermediate">Intermediate (1-3 years)</option>
-                                            <option value="advanced">Advanced (3-5 years)</option>
-                                            <option value="expert">Expert (5+ years)</option>
-                                        </select>
-                                    </div>
-
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-2">Primary Programming
-                                            Languages</label>
-                                        <div class="grid grid-cols-2 gap-2">
-                                            <div class="flex items-center">
-                                                <input id="js" name="languages" type="checkbox" value="JavaScript"
-                                                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                                                <label for="js" class="ml-2 block text-sm text-gray-700">JavaScript</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="python" name="languages" type="checkbox" value="Python"
-                                                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                                                <label for="python" class="ml-2 block text-sm text-gray-700">Python</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="java" name="languages" type="checkbox" value="Java"
-                                                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                                                <label for="java" class="ml-2 block text-sm text-gray-700">Java</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="csharp" name="languages" type="checkbox" value="C#"
-                                                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                                                <label for="csharp" class="ml-2 block text-sm text-gray-700">C#</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="php" name="languages" type="checkbox" value="PHP"
-                                                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                                                <label for="php" class="ml-2 block text-sm text-gray-700">PHP</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="ruby" name="languages" type="checkbox" value="Ruby"
-                                                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                                                <label for="ruby" class="ml-2 block text-sm text-gray-700">Ruby</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="go" name="languages" type="checkbox" value="Go"
-                                                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                                                <label for="go" class="ml-2 block text-sm text-gray-700">Go</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="rust" name="languages" type="checkbox" value="Rust"
-                                                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                                                <label for="rust" class="ml-2 block text-sm text-gray-700">Rust</label>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-2">Areas of
-                                            Interest</label>
-                                        <div class="grid grid-cols-2 gap-2">
-                                            <div class="flex items-center">
-                                                <input id="web-dev" name="interests" type="checkbox" value="Web
-                                                    Development"
-                                                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                                                <label for="web-dev" class="ml-2 block text-sm text-gray-700">Web
-                                                    Development</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="mobile-dev" name="interests" type="checkbox" value="Mobile
-                                                    Development"
-                                                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                                                <label for="mobile-dev" class="ml-2 block text-sm text-gray-700">Mobile
-                                                    Development</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="data-science" name="interests" type="checkbox" value="Data
-                                                    Science"
-                                                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                                                <label for="data-science" class="ml-2 block text-sm text-gray-700">Data
-                                                    Science</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="ai-ml" name="interests" type="checkbox" value="AI & Machine
-                                                    Learning"
-                                                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                                                <label for="ai-ml" class="ml-2 block text-sm text-gray-700">AI & Machine
-                                                    Learning</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="devops" name="interests" type="checkbox" value="DevOps"
-                                                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                                                <label for="devops" class="ml-2 block text-sm text-gray-700">DevOps</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="game-dev" name="interests" type="checkbox" value="Game
-                                                    Development"
-                                                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                                                <label for="game-dev" class="ml-2 block text-sm text-gray-700">Game
-                                                    Development</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="blockchain" name="interests" type="checkbox" value="Blockchain"
-                                                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                                                <label for="blockchain"
-                                                    class="ml-2 block text-sm text-gray-700">Blockchain</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="security" name="interests" type="checkbox" value="Cybersecurity"
-                                                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                                                <label for="security"
-                                                    class="ml-2 block text-sm text-gray-700">Cybersecurity</label>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <label for="bio" class="block text-sm font-medium text-gray-700 mb-1">Bio</label>
-                                        <textarea id="bio" name="bio" rows="3"
-                                            class="shadow-sm focus:ring-blue-500 focus:border-blue-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-lg bg-gray-50 p-3"
-                                            placeholder="Tell us a bit about yourself and your coding journey"></textarea>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <input id="newsletter" name="newsletter" type="checkbox"
-                                            class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                                        <label for="newsletter" class="ml-2 block text-sm text-gray-700">Subscribe to our
-                                            newsletter for coding tips and community updates</label>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <input id="terms" name="terms" type="checkbox"
-                                            class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                                        <label for="terms" class="ml-2 block text-sm text-gray-700">I agree to the <a
-                                                href="#" class="text-blue-600 hover:text-blue-500">Terms and Conditions</a>
-                                            and <a href="#" class="text-blue-600 hover:text-blue-500">Privacy
-                                                Policy</a></label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Navigation buttons -->
-                            <div class="flex justify-between pt-4">
-                                <button type="button"
-                                    class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 transition-colors"
-                                    x-show="step > 1" @click="step--">
-                                    <i class="fas fa-arrow-left mr-2"></i> Previous
-                                </button>
-
-                                <div class="flex-grow"></div>
-
-                                <button type="button"
-                                    class="px-6 py-3 gradient-bg text-white rounded-lg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors custom-shadow"
-                                    x-show="step < maxStep" @click="step++">
-                                    Continue <i class="fas fa-arrow-right ml-2"></i>
-                                </button>
-
-                                <button type="submit"
-                                    class="px-6 py-3 gradient-bg text-white rounded-lg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors custom-shadow"
-                                    x-show="step === maxStep">
-                                    Create Account <i class="fas fa-check ml-2"></i>
-                                </button>
-                            </div>
-                        </form>
-
-                        <div class="mt-8 text-center">
-                            <p class="text-gray-600">Already have an account? <a href="#"
-                                    class="text-blue-600 hover:text-blue-500 font-medium">Sign in</a></p>
+                        <div class="error-content">
+                            <h4>Authentication Failed</h4>
+                            <p>'.$error.'</p>
+                        </div>
+                        <div class="error-actions">
+                            <button class="dismiss-btn">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </button>
                         </div>
                     </div>
-                </div>
-        </div>
+                </div>';
+            }
+            ?>
+ 
 
-    
+                <form method="post" action='../../Formhandlers/signup/handlesignup.php' id="signupForm"
+                    class="space-y-8" >
+                    <!-- Step 1: Basic Info -->
+                    <div class="space-y-6">
+                        <h2 class="text-2xl font-bold text-gray-800">Create your account</h2>
+                        <p class="text-gray-600">Join our community and start your coding journey</p>
+                        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">  
+                        <div class="space-y-4">
+                            <div>
+                                <label for="username"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <i class="fas fa-user text-gray-400"></i>
+                                    </div>
+                                    <input type="text" id="username" name="username"
+                                        class="pl-10 block w-full rounded-lg border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 bg-gray-50 py-3 px-4"
+                                        placeholder="Choose a unique username">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <i class="fas fa-envelope text-gray-400"></i>
+                                    </div>
+                                    <input type="email" id="email" name="email"
+                                        class="pl-10 block w-full rounded-lg border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 bg-gray-50 py-3 px-4"
+                                        placeholder="your@email.com">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Gender</label>
+                                <div class="flex space-x-4">
+                                    <div class="flex items-center">
+                                        <input id="male" name="gender" type="radio" value='Male'
+                                            class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300">
+                                        <label for="male" class="ml-2 block text-sm text-gray-700">Male</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input id="female" name="gender" type="radio" value="Female"
+                                            class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300">
+                                        <label for="female" class="ml-2 block text-sm text-gray-700">Female</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input id="non-binary" name="gender" type="radio" value='Non-binary'
+                                            class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300">
+                                        <label for="non-binary"
+                                            class="ml-2 block text-sm text-gray-700">Non-binary</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input id="other" name="gender" type="radio" value="others"
+                                            class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300">
+                                        <label for="other" class="ml-2 block text-sm text-gray-700">Other</label>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div>
+                                <label for="password"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <i class="fas fa-lock text-gray-400"></i>
+                                    </div>
+                                    <input type="password" id="password" name="password"
+                                        class="pl-10 block w-full rounded-lg border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 bg-gray-50 py-3 px-4"
+                                        placeholder="Create a strong password">
+                                </div>
+                                <p class="mt-2 text-sm text-gray-500">Must be at least 8 characters with a number
+                                    and special character</p>
+                            </div>
+
+                            <div>
+                                <label for="confirm-password"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <i class="fas fa-lock text-gray-400"></i>
+                                    </div>
+                                    <input type="password" id="confirm-password" name="confirm-password"
+                                        class="pl-10 block w-full rounded-lg border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 bg-gray-50 py-3 px-4"
+                                        placeholder="Confirm your password">
+                                </div>
+                            </div>
+
+                            <div class="flex items-center">
+                                <input id="newsletter" name="newsletter" type="checkbox"
+                                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                                <label for="newsletter" class="ml-2 block text-sm text-gray-700">Subscribe to our
+                                    newsletter for coding tips and community updates</label>
+                            </div>
+
+                            <div class="flex items-center">
+                                <input id="terms" name="terms" type="checkbox"
+                                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                                <label for="terms" class="ml-2 block text-sm text-gray-700">I agree to the <a href="#"
+                                        class="text-blue-600 hover:text-blue-500">Terms and Conditions</a>
+                                    and <a href="#" class="text-blue-600 hover:text-blue-500">Privacy
+                                        Policy</a></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation buttons -->
+                    <div class="flex justify-start pt-4">
+
+                        <button type="submit"
+                            class="px-6 py-3 gradient-bg text-white rounded-lg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors custom-shadow">
+                            Create Account
+                        </button>
+                    </div>
+
+                    <?php
+                    require_once __DIR__ . '/../../vendor/autoload.php'; // Adjust path as needed
+
+                    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../../'); // Load from project root
+                    $dotenv->load();
+                    ?>
+
+                    <div class="g-recaptcha" data-sitekey="<?php echo htmlspecialchars($_ENV['RECAPTCHA_SITE_KEY']); ?>"></div>
+
+
+                </form>
+
+                <div class="mt-6 text-center">
+                    <p class="text-gray-600">Already have an account? <a href="../../pages/auth/login.php"
+                            class="text-blue-600 hover:text-blue-500 font-medium">Sign in</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+
 </body>
 
 </html>

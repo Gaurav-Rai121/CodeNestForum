@@ -202,7 +202,7 @@
                         <div class="border-t border-gray-800 my-1"></div>
 
                         <!-- Logout -->
-                        <a href="#" class="dropdown-item text-red-400 hover:text-red-300">
+                        <a href="../../Formhandlers/auth/logout.php" class="dropdown-item text-red-400 hover:text-red-300">
                             <i class="fas fa-sign-out-alt"></i>
                             <span>Logout</span>
                         </a>

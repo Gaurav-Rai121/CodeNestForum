@@ -19,8 +19,4 @@ $myconnect=mysqli_connect( $servername,$username,$password,$database);
 //    echo "server is connected pease check the code";
 //  }
 
-
-
-
-
 ?>

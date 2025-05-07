@@ -13,7 +13,8 @@
 
 <body>
 
-  <?php include('components/header.php') ?>
+  <?php include('../../components/common/header2.php');
+  include('../../components/common/header.php') ?>
     <!-- Hero Section -->
     <section class="pt-40 pb-24 overflow-hidden relative gradient-bg">
         <!-- Background blur circles -->
